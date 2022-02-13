@@ -3,8 +3,8 @@ import pyminizip
 import tempfile
 import os
 
-s3backetread = ''
-s3backetwrite = ''
+s3backetread = 'suh7881-exampleread000'
+s3backetwrite = 'suh7881-examplewrite0000'
 
 filename = 'myface.png'
 s3 = boto3.resource('s3')
