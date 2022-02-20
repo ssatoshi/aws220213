@@ -10,9 +10,11 @@ filename = 'myface.png'
 s3 = boto3.resource('s3')
 
 # ファイルの読込
+# S3からオブジェクト取得
 obj = s3.Object(s3backetread, filename)
 response = obj.get()
 tmpdir = tempfile.TemporaryDirectory()
+print(tmpdir.name+'/'+filename)
 fp = open(tmpdir.name + '/' + filename, 'wb')
 fp.write(response['Body'].read())
 fp.close()
@@ -20,6 +22,8 @@ fp.close()
 # 暗号化
 zipname = tempfile.mkstemp(suffix='.zip')
 os.chdir(tmpdir.name)
+
+print(zipname)
 pyminizip.compress(filename, '', zipname, 'mypassword', 0)
 
 # S3にアップデート
